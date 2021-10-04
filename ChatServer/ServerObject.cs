@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
+using System.Net;
 using System.Text;
 using System.Threading;
 
@@ -11,7 +11,7 @@ namespace ChatServer
     public class ServerObject
     {
         static TcpListener tcpListener; // сервер для прослушивания
-        List<ClientObject> clients = new List<ClientObject>(); // список вех подключенных клие
+        List<ClientObject> clients = new List<ClientObject>(); // все подключения
 
         protected internal void AddConnection(ClientObject clientObject)
         {
@@ -30,13 +30,13 @@ namespace ChatServer
         {
             try
             {
-                tcpListener = new TcpListener(IPAddress.Any, 8888); //создание сервера 
-                tcpListener.Start(); //запуск сервера
+                tcpListener = new TcpListener(IPAddress.Any, 8888);
+                tcpListener.Start();
                 Console.WriteLine("Сервер запущен. Ожидание подключений...");
 
                 while (true)
                 {
-                    TcpClient tcpClient = tcpListener.AcceptTcpClient(); //принимает новых клиентов
+                    TcpClient tcpClient = tcpListener.AcceptTcpClient();
 
                     ClientObject clientObject = new ClientObject(tcpClient, this);
                     Thread clientThread = new Thread(new ThreadStart(clientObject.Process));

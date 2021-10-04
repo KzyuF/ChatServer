@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 
@@ -15,7 +14,7 @@ namespace ChatServer
 
         public ClientObject(TcpClient tcpClient, ServerObject serverObject)
         {
-            Id = Guid.NewGuid().ToString(); //присваивание глобального уникального индефикатора к клиенту
+            Id = Guid.NewGuid().ToString();
             client = tcpClient;
             server = serverObject;
             serverObject.AddConnection(this);
